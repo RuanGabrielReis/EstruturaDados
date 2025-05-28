@@ -2,15 +2,16 @@
 using namespace std;
 
 int main() {
-	cout << "Quantas linhas tera?";
+	int coluna;
 	int linha;
+	
+	cout << "Quantas linhas tera?";
 	cin >> linha;
 	
 	cout << "Quantas colunas tera?";
-	int coluna;
 	cin >> coluna;
 	
-	int* matrizDin = new int[linha][coluna];
+	int** matrizDin = new int[linha][coluna];
 	
 	for (int i = 0; i < linha; i++) {
 		for (int j = 0; j < coluna; j++) {
