@@ -21,6 +21,6 @@ main() {
 	if (opcao != 0) {
 		main();
 	} else {
-		cout << "Obrigado por usar o programa!";
+		cout << "\nObrigado por usar o programa!";
 	}
 }

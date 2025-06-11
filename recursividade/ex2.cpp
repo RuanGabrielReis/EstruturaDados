@@ -14,13 +14,13 @@ fibonacci(int pos) {
 
 main() {
 	int n,opcao;
-	cout << "Digite a posicao no fibonacci: ";
+	cout << "\nDigite a posicao no fibonacci: ";
 	cin >> n;
 	
 	cout << fibonacci(n); 
 	
 	cout << "\n\nDigite 0 para encerrar, qualquer outra p/ continuar: ";
-	cin >> opcao;
+	cin >> opcao;	
 	if (opcao != 0) {
 		main();
 	} else {
