@@ -1,0 +1,129 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2709
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 #include <iostream>\
+\
+template <typename T>\
+class Deque \{\
+private:\
+    struct Node \{\
+    T value;\
+    Node* prev;\
+    Node* next;\
+        Node(const T& val) : value(val), prev(nullptr), next(nullptr) \{\}\
+    \};\
+\
+    Node* front;\
+    Node* back;\
+\
+public:\
+    Deque() : front(nullptr), back(nullptr) \{\}\
+\
+    ~Deque() \{\
+        clear();\
+    \}\
+\
+    bool isEmpty() const \{\
+        return front == nullptr;\
+    \}\
+\
+    void pushFront(const T& value) \{\
+        Node* newNode = new Node(value);\
+        if (isEmpty()) \{\
+            front = back = newNode;\
+        \} else \{\
+            newNode->next = front;\
+            front->prev = newNode;\
+            front = newNode;\
+        \}\
+    \}\
+\
+    void pushBack(const T& value) \{\
+        Node* newNode = new Node(value);\
+        if (isEmpty()) \{\
+            front = back = newNode;\
+        \} else \{\
+            newNode->prev = back;\
+            back->next = newNode;\
+            back = newNode;\
+        \}\
+    \}\
+\
+    void popFront() \{\
+        if (isEmpty()) \{\
+            std::cout << "O deque est\'e1 vazio." << std::endl;\
+            return;\
+        \}\
+\
+        Node* temp = front;\
+        front = front->next;\
+\
+        if (front == nullptr) \{\
+            back = nullptr;\
+        \} else \{\
+            front->prev = nullptr;\
+        \}\
+\
+        delete temp;\
+    \}\
+\
+    void popBack() \{\
+        if (isEmpty()) \{\
+            std::cout << "O deque est\'e1 vazio." << std::endl;\
+            return;\
+        \}\
+\
+        Node* temp = back;\
+        back = back->prev;\
+\
+        if (back == nullptr) \{\
+            front = nullptr;\
+        \} else \{\
+            back->next = nullptr;\
+        \}\
+\
+        delete temp;\
+    \}\
+\
+    const T& getFront() const \{\
+        if (isEmpty()) \{\
+            throw std::runtime_error("O deque est\'e1 vazio.");\
+        \}\
+        return front->value;\
+    \}\
+\
+    const T& getBack() const \{\
+        if (isEmpty()) \{\
+            throw std::runtime_error("O deque est\'e1 vazio.");\
+        \}\
+        return back->value;\
+    \}\
+\
+    void clear() \{\
+        Node* current = front;\
+        while (current != nullptr) \{\
+            Node* next = current->next;\
+            delete current;\
+            current = next;\
+        \}\
+        front = back = nullptr;\
+    \}\
+\
+    void print() const \{\
+        if (isEmpty()) \{\
+            std::cout << "O deque est\'e1 vazio." << std::endl;\
+            return;\
+        \}\
+\
+        Node* current = front;\
+        while (current != nullptr) \{\
+            std::cout << current->value << " ";\
+            current = current->next;\
+        \}\
+        std::cout << std::endl;\
+    \}\
+\};}

@@ -1,0 +1,109 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2709
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 #include <iostream>\
+\
+template <typename T>\
+class Set \{\
+private:\
+    struct Node \{\
+        T value;\
+        Node* next;\
+\
+        Node(const T& val) : value(val), next(nullptr) \{\}\
+    \};\
+\
+    Node* head;\
+\
+public:\
+    Set() : head(nullptr) \{\}\
+\
+    ~Set() \{\
+        clear();\
+    \}\
+\
+    bool isEmpty() const \{\
+        return head == nullptr;\
+    \}\
+\
+    bool contains(const T& value) const \{\
+        Node* current = head;\
+        while (current != nullptr) \{\
+            if (current->value == value) \{\
+                return true;\
+            \}\
+            current = current->next;\
+        \}\
+        return false;\
+    \}\
+\
+    void insert(const T& value) \{\
+        if (contains(value)) \{\
+            std::cout << "Elemento j\'e1 existe no conjunto." << std::endl;\
+            return;\
+        \}\
+\
+        Node* newNode = new Node(value);\
+        newNode->next = head;\
+        head = newNode;\
+    \}\
+\
+    void remove(const T& value) \{\
+        if (isEmpty()) \{\
+            std::cout << "Conjunto vazio." << std::endl;\
+            return;\
+        \}\
+\
+        if (head->value == value) \{\
+            Node* temp = head;\
+            head = head->next;\
+            delete temp;\
+            std::cout << "Elemento removido do conjunto." << std::endl;\
+            return;\
+        \}\
+\
+        Node* current = head;\
+        while (current->next != nullptr && current->next->value != value) \{\
+            current = current->next;\
+        \}\
+\
+        if (current->next == nullptr) \{\
+            std::cout << "Elemento n\'e3o encontrado no conjunto." << std::endl;\
+            return;\
+        \}\
+\
+        Node* temp = current->next;\
+        current->next = temp->next;\
+        delete temp;\
+        std::cout << "Elemento removido do conjunto." << std::endl;\
+    \}\
+\
+    void clear() \{\
+        Node* current = head;\
+        while (current != nullptr) \{\
+            Node* next = current->next;\
+            delete current;\
+            current = next;\
+        \}\
+        head = nullptr;\
+    \}\
+\
+    void print() const \{\
+        if (isEmpty()) \{\
+            std::cout << "Conjunto vazio." << std::endl;\
+            return;\
+        \}\
+\
+        Node* current = head;\
+        while (current != nullptr) \{\
+            std::cout << current->value << " ";\
+            current = current->next;\
+        \}\
+        std::cout << std::endl;\
+    \}\
+\};\
+}
