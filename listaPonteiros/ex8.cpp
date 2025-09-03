@@ -9,8 +9,8 @@ void preencherEImprimir(string &nome, int &idade) {
     cin >> idade;
 
     cout << "\nDados da pessoa:" << endl;
-    cout << "Nome: " << nome << endl;
-    cout << "Idade: " << idade << endl;
+    cout << "Nome: " << nome << ", Endereco de nome: "<< &nome << endl;
+    cout << "Idade: " << idade << ", Endereco de idade: "<< &idade << endl;
 }
 
 int main() {
@@ -20,7 +20,7 @@ int main() {
     preencherEImprimir(nome, idade);
 
    	cout << "\nAcessando de main():" << endl;
-    cout << "Nome: " << nome << endl;
-    cout << "Idade: " << idade << endl;
+    cout << "Nome: " << nome << ", Endereco de nome: "<< &nome << endl;
+    cout << "Idade: " << idade << ", Endereco de idade: "<< &idade << endl;
 
 }
